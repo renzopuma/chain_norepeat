@@ -74,19 +74,17 @@ def dws(d, c1, f1, f2, f3, f4, f5):
 
 
 def ups(u, c1, k1, k2, k3, k4, k5):
-    res = {}
     db = {}
-    us = {name: pd.DataFrame() for name in u}
+    us = {}
     v1 = ['c'] + u
     for j in range(len(c1)):
         c = k1.to_sector[j]
-        u1 = k1.num_sector[c - 1]
-        db[j+1] = [u1, c]
-        us[u[0]] = u1
-        for i in range(len(u)-1):
-            t = u[i]
-            s = u[i+1]   
-            us[s] = k1.num_sector[us[t]-1]
+        db[j+1] = [c]
+        us[u[0]] = c
+        for i in range(len(u)):
+            t = v1[i]
+            s = v1[i+1]   
+            us[s] = k1.num_sector.loc[us[t]-1]
             us[s] = loop_buster_ups(us[s], us[t], db[j+1], k1, k2, k3, k4, k5)
             #res[j+1].append((us[s], us[t]))
             db[j+1].insert(0,us[s])

@@ -80,7 +80,7 @@ def ups(u, c1, k1, k2, k3, k4, k5):
     for j in range(len(c1)):
         c = k1.to_sector[j]
         db[j+1] = [c]
-        us[u[0]] = c
+        us[v1[0]] = c
         for i in range(len(u)):
             t = v1[i]
             s = v1[i+1]   
